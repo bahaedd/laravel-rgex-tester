@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/show', function () {
     $result = Session::get('result');
     $message = Session::get('message');
@@ -34,9 +33,14 @@ Route::post('regex', function (Request $request) {
 
     $subject = $data['subject'];
     $pattern = $data['pattern'];
+    $options = $data['options'];
 
     try {
-        preg_match_all('/' . $pattern . '/', $subject, $matches);
+        if($options){
+            preg_match_all('/' . $pattern . '/'.$options , $subject, $matches);
+        }else{
+            preg_match_all('/' . $pattern . '/', $subject, $matches);
+        }
     } catch (Exception $e) {
         return Redirect::to('/show')->withInput()->with('message', $e->getMessage());
     }

@@ -12,6 +12,7 @@
             <div class="input-group-append">
               <span class="input-group-text">/</span>
             </div>
+            <input class="form-control" type="text" name="options" id="options" placeholder="Regex Options" style="margin-left: 10px">
             <button class="btn btn-info" type="submit" style="margin-left: 10px">preg_match_all</button>
         </div>
         @error('pattern')
